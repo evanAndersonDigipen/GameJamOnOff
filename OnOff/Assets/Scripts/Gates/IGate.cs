@@ -7,6 +7,9 @@ using System.Threading.Tasks;
 
 interface IGate
 {
+    /// <summary>
+    /// Logic function every gate is required to have
+    /// </summary>
     public void checkFunc();
 
 }
