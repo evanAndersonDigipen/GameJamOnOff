@@ -8,7 +8,12 @@ public class IO : MonoBehaviour
     public typeOfIO iO;
     [SerializeField]
     GameObject selected;
+    [SerializeField]
+    GameObject player;
+    Player playerScript;
     public bool value;
+
+    bool wiring = false;
     // Update is called once per frame
     void Update()
     {
@@ -35,42 +40,32 @@ public class IO : MonoBehaviour
         {
             GetComponent<SpriteRenderer>().color = Color.red;
         }
+        if(selected == null)
+        {
+            GetComponent<LineRenderer>().SetPosition(1, transform.position);
+        }
+        if(player != null)
+        {
+            if(playerScript != null && playerScript.select == gameObject)
+            {
+                GetComponent<LineRenderer>().SetPosition(1, player.transform.position);
+            }
+            
+            if (wiring)
+            {
+                wire();
+            }
+            
+        }
 
     }
-    /*private void OnCollisionStay2D(Collision2D collision)
+    private void Start()
     {
-        Debug.Log(1);
-        Player p;
-
-        if (collision.gameObject.TryGetComponent<Player>(out p))
-        {
-            Debug.Log(2);
-            if (!p.holding)
-            {
-                Debug.Log(3);
-                if (Input.GetKeyDown(KeyCode.E))
-                {
-                    Debug.Log(4);
-                    p.select = gameObject;
-                    p.holding = true;
-                }
-            }
-            else
-            {
-                Debug.Log(5);
-                if (Input.GetKeyDown(KeyCode.E))
-                {
-                    Debug.Log(6);
-                    selected = p.select;
-                    selected.GetComponent<IO>().selected = gameObject;
-                    p.select = null;
-                    p.holding = false;
-                }
-
-            }
-        }
-    }*/
-    private void OnTriggerStay2D(Collider2D collision)
+        GetComponent<LineRenderer>().SetPosition(0, transform.position);
+        GetComponent<LineRenderer>().SetPosition(1, transform.position);
+    }
+    
+    /*private void OnTriggerStay2D(Collider2D collision)
     {
         Debug.Log(1);
         Player p;
@@ -86,6 +81,7 @@ public class IO : MonoBehaviour
                     Debug.Log(4);
                     p.select = gameObject;
                     p.holding = true;
+                    player = collision.gameObject;
                 }
             }
             else
@@ -99,9 +95,67 @@ public class IO : MonoBehaviour
                     selected.GetComponent<LineRenderer>().enabled = false;
                     p.select = null;
                     p.holding = false;
+                    player = null;
                 }
                 
             }            
+        }
+        
+    }*/
+
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.TryGetComponent<Player>(out _))
+        {
+            wiring = true;
+            player = collision.gameObject;
+        }
+    }
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        wiring = false;
+        if(player != null)
+        {
+            //player = null;
+        } 
+    }
+
+    void wire()
+    {
+        if (player == null) return;
+        playerScript = player.GetComponent<Player>();
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+            if (!playerScript.holding)
+            {
+                playerScript.select = gameObject;
+                playerScript.holding = true;
+                if (selected != null)
+                {
+                    selected.GetComponent<IO>().selected = null;
+                    selected = null;
+
+                }
+                
+                
+            }
+            else
+            {
+                //IO possible = playerScript.select.GetComponent<IO>();
+                if (!playerScript.select != gameObject && selected == null)
+                {
+                    selected = playerScript.select;
+                    selected.GetComponent<IO>().selected = gameObject;
+                }
+                
+                
+                
+
+                playerScript.select = null;
+                playerScript.holding = false;
+                player = null;
+            }
         }
         
     }
