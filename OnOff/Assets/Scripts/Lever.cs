@@ -7,12 +7,9 @@ public class Lever : Gate, IGate
     bool PlayerCheck;
     public void checkFunc()
     {
-        if (Input.GetKey(KeyCode.F) && PlayerCheck)
+        if (Input.GetKeyDown(KeyCode.F) && PlayerCheck)
         {
-            for (int i = 0; i < outputs.Length; i++)
-            {
-                outputs[i] = !outputs[i];
-            }
+            setOutputs(!outputs[0]);
         }
     }
 

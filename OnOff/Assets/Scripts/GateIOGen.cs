@@ -110,5 +110,6 @@ public class GateIOGen : MonoBehaviour
             b.transform.localPosition = new Vector3(-.5f + x_offset, .5f);
             b.transform.localScale *= .25f;
         }
+        ready = true;
     }
 }
