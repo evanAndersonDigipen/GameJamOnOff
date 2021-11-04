@@ -23,6 +23,9 @@ public class IO : MonoBehaviour
             {
                 value = selected.GetComponent<IO>().value;
             }
+
+            else if (selected.GetComponent<IO>().iO == typeOfIO.output) ;
+
             else
             {
                 selected.GetComponent<IO>().value = value;
