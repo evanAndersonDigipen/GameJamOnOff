@@ -10,13 +10,44 @@ public class GateIOGen : MonoBehaviour
     GameObject outputPrefab;
 
     Gate g;
+    bool ready;
     // Start is called before the first frame update
     void Start()
     {
+
+        StartCoroutine(Inputssetup());
+        StartCoroutine(OutputSetup());
+
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        if (ready)
+        {
+            IO[] iOs = transform.GetComponentsInChildren<IO>();
+            for (int i = 0; i < iOs.Length; i++)
+            {
+                if (iOs[i].iO == IO.typeOfIO.output)
+                {
+                    iOs[i].value = g.outputs[0];
+                }
+                else
+                {
+                    g.inputs[i] = iOs[i].value;
+                }
+            }
+        }
+        
+           
+    }
+    IEnumerator Inputssetup()
+    {
+        
         g = GetComponent<Gate>();
         Rect rect = GetComponent<SpriteRenderer>().sprite.rect;
         float x_offset;
-        
+        while (g.inputs.Length == 0) yield return new WaitForEndOfFrame();
         //if (g.inputs.Length == 0)
         if (g.inputs.Length != 1)
         {
@@ -42,8 +73,19 @@ public class GateIOGen : MonoBehaviour
             b.transform.localPosition = new Vector3(-.5f + x_offset, -.5f);
             b.transform.localScale *= .25f;
         }
-       
+
+
         
+        ready = true;
+    }
+    IEnumerator OutputSetup()
+    {
+        g = GetComponent<Gate>();
+        Rect rect = GetComponent<SpriteRenderer>().sprite.rect;
+        float x_offset;
+
+        while (g.outputs.Length == 0) yield return new WaitForEndOfFrame();
+
         if (g.outputs.Length != 1)
         {
             x_offset = 1f / (g.outputs.Length - 1);
@@ -68,26 +110,5 @@ public class GateIOGen : MonoBehaviour
             b.transform.localPosition = new Vector3(-.5f + x_offset, .5f);
             b.transform.localScale *= .25f;
         }
-        
-        
-
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        IO[] iOs = transform.GetComponentsInChildren<IO>();
-        for (int i = 0; i < iOs.Length; i++)
-        {
-            if(iOs[i].iO == IO.typeOfIO.output)
-            {
-                iOs[i].value = g.outputs[0];
-            }
-            else
-            {
-                g.inputs[i] = iOs[i].value;
-            }
-        }
-           
     }
 }
