@@ -16,10 +16,12 @@ public class GateIOGen : MonoBehaviour
         g = GetComponent<Gate>();
         Rect rect = GetComponent<SpriteRenderer>().sprite.rect;
         float x_offset;
-        if (g.NumberOfInputs != 1)
+        
+        //if (g.inputs.Length == 0)
+        if (g.inputs.Length != 1)
         {
-            x_offset = 1f / (g.NumberOfInputs - 1);
-            for (int i = 0; i < g.NumberOfInputs; i++)
+            x_offset = 1f / (g.inputs.Length - 1);
+            for (int i = 0; i < g.inputs.Length; i++)
             {
                 GameObject b = Instantiate(inputPrefab, transform);
                 b.transform.localPosition = new Vector3(-.5f + x_offset * i, -.5f);
@@ -42,10 +44,10 @@ public class GateIOGen : MonoBehaviour
         }
        
         
-        if (g.NumberOfOutputs != 1)
+        if (g.outputs.Length != 1)
         {
-            x_offset = 1f / (g.NumberOfOutputs - 1);
-            for (int i = 0; i < g.NumberOfOutputs; i++)
+            x_offset = 1f / (g.outputs.Length - 1);
+            for (int i = 0; i < g.outputs.Length; i++)
             {
                 GameObject b = Instantiate(outputPrefab, transform);
                 b.transform.localPosition = new Vector3(-.5f + x_offset * i, .5f);

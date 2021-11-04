@@ -14,6 +14,8 @@ public class Not : Gate, IGate
     {
         inputs = new bool[1];
         outputs = new bool[1];
+        NumberOfInputs = 1;
+        NumberOfOutputs = 1;
         check = checkFunc;
     }
 

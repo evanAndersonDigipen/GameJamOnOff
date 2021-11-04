@@ -43,6 +43,10 @@ public class IO : MonoBehaviour
         if(selected == null)
         {
             GetComponent<LineRenderer>().SetPosition(1, transform.position);
+            if(iO == typeOfIO.input)
+            {
+                value = false;
+            }
         }
         if(player != null)
         {
@@ -148,7 +152,10 @@ public class IO : MonoBehaviour
                     selected = playerScript.select;
                     selected.GetComponent<IO>().selected = gameObject;
                 }
-                
+                if(!playerScript.select == gameObject)
+                {
+                    selected = null;
+                }              
                 
                 
 
