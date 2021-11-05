@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Lever : Gate, IGate
 {
-    bool PlayerCheck;
+    public bool PlayerCheck;
     public void checkFunc()
     {
         if (Input.GetKeyDown(KeyCode.F) && PlayerCheck)
