@@ -85,14 +85,23 @@ public class GateIOGen : MonoBehaviour
         float x_offset;
 
         while (g.outputs.Length == 0) yield return new WaitForEndOfFrame();
-
+        
         if (g.outputs.Length != 1)
         {
             x_offset = 1f / (g.outputs.Length - 1);
+            float y_offset;
+            if (g.name.Contains("Lever"))
+            {
+                y_offset = .25f;
+            }
+            else
+            {
+                y_offset = .5f;
+            }
             for (int i = 0; i < g.outputs.Length; i++)
             {
                 GameObject b = Instantiate(outputPrefab, transform);
-                b.transform.localPosition = new Vector3(-.5f + x_offset * i, .5f);
+                b.transform.localPosition = new Vector3(-.5f + x_offset * i,  y_offset);
                 if (x_offset != 1f)
                 {
                     b.transform.localScale *= x_offset * .5f;
@@ -105,9 +114,18 @@ public class GateIOGen : MonoBehaviour
         }
         else
         {
+            float y_offset;
+            if (g.name.Contains("Lever"))
+            {
+                y_offset = .25f;
+            }
+            else
+            {
+                y_offset = .5f;
+            }
             x_offset = .5f;
             GameObject b = Instantiate(outputPrefab, transform);
-            b.transform.localPosition = new Vector3(-.5f + x_offset, .5f);
+            b.transform.localPosition = new Vector3(-.5f + x_offset, y_offset);
             b.transform.localScale *= .25f;
         }
         ready = true;
