@@ -113,7 +113,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bcc98fae833b89648bbe1001d119c7e3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 10
+  speed: 5
   select: {fileID: 0}
   holding: 0
   wireLength: 0
