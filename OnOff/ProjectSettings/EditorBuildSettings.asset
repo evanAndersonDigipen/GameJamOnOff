@@ -14,4 +14,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Tutorial_3.unity
     guid: 63875ba96228efb4a901dd1a343e0ad9
+  - enabled: 1
+    path: Assets/Scenes/Tutorial_4.unity
+    guid: 492563430964b4f46b4fb9018f469335
+  - enabled: 1
+    path: Assets/Scenes/Troll.unity
+    guid: 384d396c4b3062246bd40c899e2bb830
   m_configObjects: {}
