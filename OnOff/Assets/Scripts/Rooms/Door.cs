@@ -9,10 +9,13 @@ public class Door : MonoBehaviour
     public GameObject prefab;
 
     Rooms rooms;
-    GameObject g;
+    public GameObject g;
 
     [SerializeField]
     Sprite[] sprites;
+
+    bool hasPlayed;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -35,17 +38,24 @@ public class Door : MonoBehaviour
     {
         if (TypeOfDoor == typeOfDoor.exit)
         {
-            rooms.value = g.GetComponent<IO>().value;
+            //rooms.value = g.GetComponent<IO>().value;
             if (rooms.value)
             {
                 GetComponent<SpriteRenderer>().sprite = sprites[1];
                 GetComponent<Collider2D>().isTrigger = true;
+                if (!hasPlayed)
+                {
+                    GetComponent<AudioSource>().Play();
+                    hasPlayed = true;
+                }
+                
                 
             }
             else
             {
                 GetComponent<SpriteRenderer>().sprite = sprites[0];
                 GetComponent<Collider2D>().isTrigger = false;
+                hasPlayed = false;
             }
         }
         else
@@ -56,6 +66,7 @@ public class Door : MonoBehaviour
             g.GetComponent<IO>().value = System.Convert.ToBoolean(PlayerPrefs.GetInt((rooms.id-1).ToString()));
             
         }
+        Debug.Log(g.GetComponent<IO>().value);
         
     }
     private void OnTriggerEnter2D(Collider2D collision)

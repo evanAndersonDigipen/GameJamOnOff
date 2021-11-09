@@ -23,6 +23,11 @@ public class Rooms : MonoBehaviour
     }
     private void Update()
     {
+        if (GetComponent<Door>().TypeOfDoor == Door.typeOfDoor.exit)
+        {
+            value = GetComponent<Door>().g.GetComponent<IO>().value;
+        }
         PlayerPrefs.SetInt(id.ToString(), System.Convert.ToInt32(value));
+        //Debug.Log(PlayerPrefs.GetInt(id.ToString()));
     }
 }
