@@ -18,6 +18,18 @@ EditorBuildSettings:
     path: Assets/Scenes/Tutorial_4.unity
     guid: 492563430964b4f46b4fb9018f469335
   - enabled: 1
+    path: Assets/Scenes/Tutorial_5.unity
+    guid: 8da23193baece3046a57fe3a1ddb6721
+  - enabled: 1
+    path: Assets/Scenes/Tutorial_6.unity
+    guid: 69ad72cc3059ba143bbf4fd3739d155b
+  - enabled: 1
+    path: Assets/Scenes/Tutorial_7.unity
+    guid: 44919ff77a1bc754093cec084b1a5d7b
+  - enabled: 1
     path: Assets/Scenes/Troll.unity
     guid: 384d396c4b3062246bd40c899e2bb830
+  - enabled: 1
+    path: Assets/Scenes/Troll2.unity
+    guid: 4a0e9ac9865b7bb4a98e52c3518a50a5
   m_configObjects: {}
