@@ -8,6 +8,7 @@ public class Player : MonoBehaviour
     public GameObject select;
     public bool holding;
     Rigidbody2D rb;
+    public float wireLength = 0;
     // Start is called before the first frame update
     void Start()
     {
@@ -22,34 +23,30 @@ public class Player : MonoBehaviour
         {
             pos.y = speed;
         }
-        if (Input.GetKey(KeyCode.A))
-        {
-            pos.x = -speed;
-        }
-        if (Input.GetKey(KeyCode.S))
+        else if (Input.GetKey(KeyCode.S))
         {
             pos.y = -speed;
+        }
+        else
+        {
+            pos.y = 0;
         }
         if (Input.GetKey(KeyCode.D))
         {
             pos.x = speed;
-        }
-        if (Input.GetKeyUp(KeyCode.W))
+        }      
+        
+        else if (Input.GetKey(KeyCode.A))
         {
-            pos.y = 0;
+            pos.x = -speed;
         }
-        if (Input.GetKeyUp(KeyCode.A))
-        {
-            pos.x = 0;
-        }
-        if (Input.GetKeyUp(KeyCode.S))
-        {
-            pos.y = 0;
-        }
-        if (Input.GetKeyUp(KeyCode.D))
+
+        else
         {
             pos.x = 0;
         }
+
+       
         rb.velocity = pos;
     }
 }

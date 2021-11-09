@@ -40,6 +40,7 @@ public class Door : MonoBehaviour
             {
                 GetComponent<SpriteRenderer>().sprite = sprites[1];
                 GetComponent<Collider2D>().isTrigger = true;
+                
             }
             else
             {
@@ -50,8 +51,12 @@ public class Door : MonoBehaviour
         else
         {
             //g.transform.localPosition = new Vector3(g.transform.localPosition.x, .5f);
-            g.GetComponent<IO>().value = rooms.roomDict[(rooms.id - 1).ToString()];
+
+            int temp = PlayerPrefs.GetInt((rooms.id - 1).ToString());
+            g.GetComponent<IO>().value = System.Convert.ToBoolean(PlayerPrefs.GetInt((rooms.id-1).ToString()));
+            
         }
+        
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {

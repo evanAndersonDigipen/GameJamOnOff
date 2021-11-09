@@ -1,62 +1,28 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using Newtonsoft.Json;
+
 
 
 
 public class Rooms : MonoBehaviour
 {
-    public bool value = false;
-    //[SerializeField]
-    public int id;
-    public Dictionary<string, bool> roomDict;
-    void Start()
+    public int id = 0;
+    public bool value;
+    private void Start()
     {
-        if (PlayerPrefs.GetString("rooms") == "")
+        id = SceneManager.GetActiveScene().buildIndex;
+        if (!PlayerPrefs.HasKey(id.ToString()))
         {
-            roomDict = new Dictionary<string, bool>();
-            string dict = JsonConvert.SerializeObject(roomDict);
-            PlayerPrefs.SetString("rooms", dict);
+            PlayerPrefs.SetInt(id.ToString(), System.Convert.ToInt32(value));
         }
         else
         {
-            string dict = PlayerPrefs.GetString("rooms");
-            Debug.Log(dict);
-            roomDict = (Dictionary<string, bool>)JsonConvert.DeserializeObject(dict);
-
+            value = System.Convert.ToBoolean(PlayerPrefs.GetInt(id.ToString()));
         }
-        id = SceneManager.GetActiveScene().buildIndex;
-        if (!roomDict.ContainsKey(id.ToString()))
-        {
-            roomDict.Add(id.ToString(), value);
-            string dict = JsonConvert.SerializeObject(roomDict);
-            //Debug.Log(dict);
-            PlayerPrefs.SetString("rooms", dict);
-        }
-        StartCoroutine(serialize());
     }
-
-    // Update is called once per frame
-    void Update()
+    private void Update()
     {
-        
-
+        PlayerPrefs.SetInt(id.ToString(), System.Convert.ToInt32(value));
     }
-
-    System.Collections.IEnumerator serialize()
-    {
-        while (true){
-            if (roomDict[id.ToString()] != value && GetComponent<Door>().TypeOfDoor == Door.typeOfDoor.exit)
-            {
-                roomDict[id.ToString()] = value;
-                string dict = JsonConvert.SerializeObject(roomDict);
-                Debug.Log(dict);
-                PlayerPrefs.SetString("rooms", dict);
-            }
-            yield return new WaitForEndOfFrame();
-        }
-        
-    }
-    
 }

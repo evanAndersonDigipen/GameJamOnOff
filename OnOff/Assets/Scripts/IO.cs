@@ -14,6 +14,13 @@ public class IO : MonoBehaviour
     public bool value;
 
     bool wiring = false;
+
+    [SerializeField]
+    AudioClip BeginWire;
+    [SerializeField]
+    AudioClip EndWire;
+
+    public float lengthClamp = 0;
     // Update is called once per frame
     void Update()
     {
@@ -55,6 +62,9 @@ public class IO : MonoBehaviour
         {
             if(playerScript != null && playerScript.select == gameObject)
             {
+                player.transform.position = new Vector3(player.transform.position.x,
+                Mathf.Clamp(player.transform.position.y, transform.position.y - player.GetComponent<Player>().wireLength,
+                transform.position.y + player.GetComponent<Player>().wireLength));
                 GetComponent<LineRenderer>().SetPosition(1, player.transform.position);
             }
             
@@ -124,7 +134,7 @@ public class IO : MonoBehaviour
         wiring = false;
         if(player != null)
         {
-            //player = null;
+            //if(player.GetComponent<Player>().holding)
         } 
     }
 
@@ -144,7 +154,7 @@ public class IO : MonoBehaviour
                     selected = null;
 
                 }
-                
+                GetComponent<AudioSource>().PlayOneShot(BeginWire);
                 
             }
             else
@@ -157,16 +167,18 @@ public class IO : MonoBehaviour
                 }
                 if(!playerScript.select == gameObject)
                 {
+                    
                     selected = null;
-                }              
-                
-                
+                }
 
+
+                selected.GetComponent<IO>().player = null;
                 playerScript.select = null;
                 playerScript.holding = false;
                 player = null;
+                GetComponent<AudioSource>().PlayOneShot(EndWire);
             }
         }
-        
+        //player = null;
     }
 }
