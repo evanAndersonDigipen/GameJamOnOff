@@ -90,9 +90,9 @@ public class GateIOGen : MonoBehaviour
         {
             x_offset = 1f / (g.outputs.Length - 1);
             float y_offset;
-            if (g.name.Contains("Lever"))
+            if (g.name.Contains("lever"))
             {
-                y_offset = .25f;
+                y_offset = .2f;
             }
             else
             {
@@ -115,9 +115,9 @@ public class GateIOGen : MonoBehaviour
         else
         {
             float y_offset;
-            if (g.name.Contains("Lever"))
+            if (g.name.Contains("lever"))
             {
-                y_offset = .25f;
+                y_offset = .2f;
             }
             else
             {
