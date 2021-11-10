@@ -443,6 +443,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: lever
       objectReference: {fileID: 0}
+    - target: {fileID: 5088964200743481957, guid: 9cb64a7db9004544196ee58038471a64, type: 3}
+      propertyPath: NumberOfOutputs
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 5088964200743481959, guid: 9cb64a7db9004544196ee58038471a64, type: 3}
       propertyPath: m_RootOrder
       value: 2
