@@ -1,7 +1,16 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+//------------------------------------------------------------------------------
+//
+// File Name:	Lever.cs
+// Author(s):	Andrew Kitzan
+// Project:	Game Jam 1
+// Course:	WANIC VGP2
+//
+// Copyright © 2021 DigiPen (USA) Corporation.
+//
+//------------------------------------------------------------------------------
 public class Lever : Gate, IGate
 {
     public bool PlayerCheck;

@@ -1,7 +1,16 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+//------------------------------------------------------------------------------
+//
+// File Name:	Xnor.cs
+// Author(s):	Andrew Kitzan
+// Project:	Game Jam 1
+// Course:	WANIC VGP2
+//
+// Copyright © 2021 DigiPen (USA) Corporation.
+//
+//------------------------------------------------------------------------------
 public class Xnor : Gate, IGate
 {
     public void checkFunc()

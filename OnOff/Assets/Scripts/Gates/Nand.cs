@@ -1,7 +1,16 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+//------------------------------------------------------------------------------
+//
+// File Name:	Nand.cs
+// Author(s):	Evan Anderson
+// Project:	Game Jam 1
+// Course:	WANIC VGP2
+//
+// Copyright © 2021 DigiPen (USA) Corporation.
+//
+//------------------------------------------------------------------------------
 public class Nand : Gate, IGate
 {
     private void Start()

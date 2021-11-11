@@ -1,7 +1,16 @@
 using UnityEngine.SceneManagement;
 using UnityEngine;
 using System.Collections.Generic;
-
+//------------------------------------------------------------------------------
+//
+// File Name:	Door.cs
+// Author(s):	Evan Anderson
+// Project:	Game Jam 1
+// Course:	WANIC VGP2
+//
+// Copyright © 2021 DigiPen (USA) Corporation.
+//
+//------------------------------------------------------------------------------
 public class Door : MonoBehaviour
 {
     public enum typeOfDoor { entrance, exit };
